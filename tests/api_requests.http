@@ -1,0 +1,288 @@
+### INGREDIENT ENDPOINTS ###
+
+### Create a new ingredient
+POST http://localhost:8000/recipes/ingredients/
+Content-Type: application/json
+
+{
+  "name": "Chicken Breast",
+  "calories_per_100g": 165.0,
+  "protein_per_100g": 31.0,
+  "carbs_per_100g": 0.0,
+  "fat_per_100g": 3.6
+}
+
+### Create another ingredient
+POST http://localhost:8000/recipes/ingredients/
+Content-Type: application/json
+
+{
+  "name": "Brown Rice",
+  "calories_per_100g": 112.0,
+  "protein_per_100g": 2.6,
+  "carbs_per_100g": 23.5,
+  "fat_per_100g": 0.9
+}
+
+### Create another ingredient
+POST http://localhost:8000/recipes/ingredients/
+Content-Type: application/json
+
+{
+  "name": "Broccoli",
+  "calories_per_100g": 34.0,
+  "protein_per_100g": 2.8,
+  "carbs_per_100g": 6.6,
+  "fat_per_100g": 0.4
+}
+
+### Create another ingredient
+POST http://localhost:8000/recipes/ingredients/
+Content-Type: application/json
+
+{
+  "name": "Salmon",
+  "calories_per_100g": 208.0,
+  "protein_per_100g": 20.4,
+  "carbs_per_100g": 0.0,
+  "fat_per_100g": 13.4
+}
+
+### Create another ingredient
+POST http://localhost:8000/recipes/ingredients/
+Content-Type: application/json
+
+{
+  "name": "Olive Oil",
+  "calories_per_100g": 884.0,
+  "protein_per_100g": 0.0,
+  "carbs_per_100g": 0.0,
+  "fat_per_100g": 100.0
+}
+
+### Get all ingredients
+GET http://localhost:8000/recipes/ingredients/
+
+### RECIPE ENDPOINTS ###
+
+### Create a new recipe - Grilled Chicken with Rice
+POST http://localhost:8000/recipes/
+Content-Type: application/json
+
+{
+  "name": "Grilled Chicken with Rice",
+  "description": "A healthy grilled chicken recipe with brown rice",
+  "instructions": "1. Season chicken breasts\n2. Grill for 6-8 minutes per side\n3. Cook brown rice according to package\n4. Serve chicken over rice",
+  "prep_time": 10,
+  "cook_time": 25,
+  "servings": 2,
+  "calories": 450.0,
+  "protein": 40.0,
+  "carbs": 45.0,
+  "fat": 10.0,
+  "ingredients": [
+    {
+      "ingredient_id": 1,
+      "amount": 200.0,
+      "unit": "g"
+    },
+    {
+      "ingredient_id": 2,
+      "amount": 150.0,
+      "unit": "g"
+    },
+    {
+      "ingredient_id": 5,
+      "amount": 15.0,
+      "unit": "ml"
+    }
+  ]
+}
+
+### Create a new recipe - Salmon with Broccoli
+POST http://localhost:8000/recipes/
+Content-Type: application/json
+
+{
+  "name": "Salmon with Steamed Broccoli",
+  "description": "Pan-seared salmon with steamed broccoli",
+  "instructions": "1. Season salmon fillets\n2. Heat olive oil in a pan\n3. Cook salmon for 4-5 minutes per side\n4. Steam broccoli for 5 minutes\n5. Serve salmon with broccoli",
+  "prep_time": 5,
+  "cook_time": 15,
+  "servings": 2,
+  "calories": 380.0,
+  "protein": 35.0,
+  "carbs": 10.0,
+  "fat": 22.0,
+  "ingredients": [
+    {
+      "ingredient_id": 4,
+      "amount": 200.0,
+      "unit": "g"
+    },
+    {
+      "ingredient_id": 3,
+      "amount": 200.0,
+      "unit": "g"
+    },
+    {
+      "ingredient_id": 5,
+      "amount": 10.0,
+      "unit": "ml"
+    }
+  ]
+}
+
+### Create a new recipe - Breakfast Omelette
+POST http://localhost:8000/recipes/
+Content-Type: application/json
+
+{
+  "name": "Vegetable Omelette",
+  "description": "A protein-rich breakfast omelette",
+  "instructions": "1. Beat eggs in a bowl\n2. Heat pan with olive oil\n3. Pour eggs into pan\n4. Add vegetables\n5. Fold and serve",
+  "prep_time": 5,
+  "cook_time": 10,
+  "servings": 1,
+  "calories": 280.0,
+  "protein": 18.0,
+  "carbs": 5.0,
+  "fat": 22.0,
+  "ingredients": [
+    {
+      "ingredient_id": 3,
+      "amount": 50.0,
+      "unit": "g"
+    },
+    {
+      "ingredient_id": 5,
+      "amount": 5.0,
+      "unit": "ml"
+    }
+  ]
+}
+
+### Create a new recipe - Protein Smoothie
+POST http://localhost:8000/recipes/
+Content-Type: application/json
+
+{
+  "name": "Protein Smoothie",
+  "description": "High-protein low-calorie snack",
+  "instructions": "1. Add all ingredients to blender\n2. Blend until smooth\n3. Serve immediately",
+  "prep_time": 5,
+  "cook_time": 0,
+  "servings": 1,
+  "calories": 150.0,
+  "protein": 25.0,
+  "carbs": 10.0,
+  "fat": 2.0,
+  "ingredients": []
+}
+
+### Create a new recipe - High-calorie burger (potential cheat meal)
+POST http://localhost:8000/recipes/
+Content-Type: application/json
+
+{
+  "name": "Double Cheese Burger",
+  "description": "A delicious high-calorie burger",
+  "instructions": "1. Form beef patties\n2. Season with salt and pepper\n3. Cook patties\n4. Toast buns\n5. Assemble burger with cheese",
+  "prep_time": 10,
+  "cook_time": 15,
+  "servings": 1,
+  "calories": 850.0,
+  "protein": 45.0,
+  "carbs": 40.0,
+  "fat": 55.0,
+  "ingredients": []
+}
+
+### Get all recipes
+GET http://localhost:8000/recipes/
+
+### Get recipe by ID
+GET http://localhost:8000/recipes/1
+
+### MEAL PLAN ENDPOINTS ###
+
+### Create a new meal plan without cheat meal
+POST http://localhost:8000/meal-plans/
+Content-Type: application/json
+
+{
+  "name": "Standard Weight Loss Plan",
+  "daily_calories": 1800.0,
+  "daily_protein": 120.0,
+  "min_carbs": 100.0,
+  "max_carbs": 150.0,
+  "min_fat": 40.0,
+  "max_fat": 60.0,
+  "num_people": 1,
+  "error_margin": 0.1,
+  "max_repeating_days": 2,
+  "allow_cheat_meal": false
+}
+
+### Create a new meal plan with cheat meal
+POST http://localhost:8000/meal-plans/
+Content-Type: application/json
+
+{
+  "name": "Flexible Diet with Cheat Meal",
+  "daily_calories": 2000.0,
+  "daily_protein": 150.0,
+  "min_carbs": 150.0,
+  "max_carbs": 200.0,
+  "min_fat": 50.0,
+  "max_fat": 70.0,
+  "num_people": 2,
+  "error_margin": 0.15,
+  "max_repeating_days": 2,
+  "allow_cheat_meal": true
+}
+
+### Create a meal plan with no repeating days
+POST http://localhost:8000/meal-plans/
+Content-Type: application/json
+
+{
+  "name": "Variable Daily Plan",
+  "daily_calories": 2200.0,
+  "daily_protein": 180.0,
+  "min_carbs": 180.0,
+  "max_carbs": 250.0,
+  "min_fat": 55.0,
+  "max_fat": 80.0,
+  "num_people": 1,
+  "error_margin": 0.1,
+  "max_repeating_days": 1,
+  "allow_cheat_meal": false
+}
+
+### Create a meal plan with maximum repeating days
+POST http://localhost:8000/meal-plans/
+Content-Type: application/json
+
+{
+  "name": "Simple Repeating Plan",
+  "daily_calories": 1600.0,
+  "daily_protein": 130.0,
+  "min_carbs": 120.0,
+  "max_carbs": 160.0,
+  "min_fat": 40.0,
+  "max_fat": 60.0,
+  "num_people": 1,
+  "error_margin": 0.1,
+  "max_repeating_days": 3,
+  "allow_cheat_meal": false
+}
+
+### Get all meal plans
+GET http://localhost:8000/meal-plans/
+
+### Get meal plan by ID
+GET http://localhost:8000/meal-plans/1
+
+### Get grocery list for meal plan
+GET http://localhost:8000/meal-plans/1/grocery-list
