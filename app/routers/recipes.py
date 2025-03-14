@@ -2,8 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-# Fix the import - remove the typo "lockck" -> "lock" 
-from app.database import get_db
+from app.db.database import get_db
 from app.models import models
 from app.schemas import schemas
 from app.utils.db_utils import retry_on_db_lock

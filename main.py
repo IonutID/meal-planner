@@ -1,14 +1,16 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.db.database import create_tables
 from app.routers import recipes, meal_plans
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_tables()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 app.include_router(recipes.router)
 app.include_router(meal_plans.router)
-
-@app.on_event("startup")
-def startup_event():
-    create_tables()
 
 if __name__ == "__main__":
     import uvicorn

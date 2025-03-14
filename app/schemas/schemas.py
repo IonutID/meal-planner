@@ -16,7 +16,7 @@ class Ingredient(IngredientBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class RecipeIngredient(BaseModel):
     ingredient_id: int
@@ -45,7 +45,7 @@ class RecipeIngredientResponse(BaseModel):
     unit: str
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Update RecipeResponse to include the detailed ingredients
 class RecipeResponse(RecipeBase):
@@ -53,7 +53,7 @@ class RecipeResponse(RecipeBase):
     ingredients: List[RecipeIngredientResponse] = []
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class MealPlanBase(BaseModel):
     name: str
@@ -79,11 +79,11 @@ class MealPlanCreate(MealPlanBase):
 
 class MealPlanRecipe(BaseModel):
     recipe_id: int
-    day: int  # 1 = Monday, 2 = Tuesday, ..., 7 = Sunday
+    day: int  
     meal_type: MealTypeEnum
 
 class DayMeals(BaseModel):
-    day: int  # 1 = Monday, 2 = Tuesday, ..., 7 = Sunday
+    day: int  
     day_name: str
     breakfast: Optional[Dict] = None
     lunch: Optional[Dict] = None
@@ -103,7 +103,7 @@ class MealPlanResponse(MealPlanBase):
     total_fat: float
     
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class GroceryItem(BaseModel):
     ingredient_name: str

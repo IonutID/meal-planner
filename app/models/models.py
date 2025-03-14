@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey, Table, Date
 from sqlalchemy.orm import relationship
-from app.db.base import Base  # Import from base.py instead
+from app.db.database import Base  # Import from base.py instead
 
 # Association table for recipe-ingredient relationship
 recipe_ingredient = Table(
@@ -18,12 +18,14 @@ meal_plan_recipe = Table(
     Base.metadata,
     Column('meal_plan_id', Integer, ForeignKey('meal_plans.id'), primary_key=True),
     Column('recipe_id', Integer, ForeignKey('recipes.id'), primary_key=True),
-    Column('day', Integer),
-    Column('meal_type', String),  # breakfast, lunch, dinner, snack
+    Column('day', Integer, primary_key=True),  # Add to primary key
+    Column('meal_type', String, primary_key=True),  # Add to primary key
 )
 
 class Recipe(Base):
     __tablename__ = "recipes"
+    __table_args__ = {'extend_existing': True}
+
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
@@ -45,6 +47,8 @@ class Recipe(Base):
 
 class Ingredient(Base):
     __tablename__ = "ingredients"
+    __table_args__ = {'extend_existing': True}
+
     
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
@@ -58,7 +62,8 @@ class Ingredient(Base):
 
 class MealPlan(Base):
     __tablename__ = "meal_plans"
-    
+    __table_args__ = {'extend_existing': True}
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     daily_calories = Column(Float)
