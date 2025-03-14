@@ -195,11 +195,13 @@ def get_grocery_list(meal_plan_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Meal plan not found")
     
     # Get all recipes in the meal plan
-    recipe_assignments = db.query(models.MealPlanRecipe).filter(
-        models.MealPlanRecipe.meal_plan_id == meal_plan_id
+    recipe_assignments = db.query(
+        models.meal_plan_recipe.c.recipe_id
+    ).filter(
+        models.meal_plan_recipe.c.meal_plan_id == meal_plan_id
     ).all()
     
-    recipe_ids = [assignment.recipe_id for assignment in recipe_assignments]
+    recipe_ids = [assignment[0] for assignment in recipe_assignments]
     
     # Get all ingredients for these recipes
     ingredients = {}
